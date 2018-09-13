@@ -1,24 +1,18 @@
-var TextAreaCounter = React.createClass({
-	
-	_log: function(methodName, args) {
-		console.log(methodName, args);
-		},
-		componentWillUpdate: function() {
-		this._log('componentWillUpdate', arguments);
-		},
-		componentDidUpdate: function() {
-		this._log('componentDidUpdate', arguments);
-		},
-		componentWillMount: function() {
-		this._log('componentWillMount', arguments);
-		},
-		componentDidMount: function() {
-		this._log('componentDidMount', arguments);
-		},
-		componentWillUnmount: function() {
-		this._log('componentWillUnmount', arguments);
-		},
+var logMixin = {
+        _log: function(methodName, args) {
+          console.log(this.name + '::' + methodName, args);
+        },
+        componentWillUpdate:  function() {this._log('componentWillUpdate',  arguments);},
+        componentDidUpdate:   function() {this._log('componentDidUpdate',   arguments);},
+        componentWillMount:   function() {this._log('componentWillMount',   arguments);},
+        componentDidMount:    function() {this._log('componentDidMount',    arguments);},
+        componentWillUnmount: function() {this._log('componentWillUnmount', arguments);},
+};
 
+var TextAreaCounter = React.createClass({
+	name: 'TextAreaCounter',
+    mixins: [logMixin],
+	
 	getInitialState: function() {
 		return {
 			text: this.props.defaultValue,
