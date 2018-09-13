@@ -1,12 +1,32 @@
 var TextAreaCounter = React.createClass({
+	
+	_log: function(methodName, args) {
+		console.log(methodName, args);
+		},
+		componentWillUpdate: function() {
+		this._log('componentWillUpdate', arguments);
+		},
+		componentDidUpdate: function() {
+		this._log('componentDidUpdate', arguments);
+		},
+		componentWillMount: function() {
+		this._log('componentWillMount', arguments);
+		},
+		componentDidMount: function() {
+		this._log('componentDidMount', arguments);
+		},
+		componentWillUnmount: function() {
+		this._log('componentWillUnmount', arguments);
+		},
+
 	getInitialState: function() {
 		return {
-			text:this.props.text,
+			text: this.props.defaultValue,
 		};
 	},
 
 	propTypes: {
-		text: React.PropTypes.string,
+		defaultValue: React.PropTypes.string
 	},
 
 	getDefaultProps: function() {
@@ -33,6 +53,7 @@ var TextAreaCounter = React.createClass({
 		}
 	});
 
-var element = React.createElement(TextAreaCounter, {text:'paweł'});
+var element = React.createElement(TextAreaCounter, {defaultValue:'paweł'});
 
 ReactDOM.render(element ,document.getElementById('app2'));
+
